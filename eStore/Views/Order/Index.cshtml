@@ -1,0 +1,86 @@
+@model IEnumerable<BusinessObject.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-danger">Order</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+<div>
+    <form asp-action="Report" method = "GET">
+        <label for="StartDate" style="font-weight:bold;">Start Date:</label>
+        <input name="StartDate" id="StartDate" type="date" />
+        <label for="EndDate" style="font-weight:bold;">End Date:</label>
+        <input name="EndDate" id="EndDate" type="date" /> 
+        <input type="submit" value="Report" class="btn btn-success" />
+        <a class="btn btn-warning" asp-controller="Order" asp-action="Index">Reset</a>
+    </form> 
+</div>
+
+</p>
+<table class="table table-hover" id="myTable" class="display" style="width:100%">
+    <thead class="table-success">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequiredDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freight)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Member.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequiredDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShippedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Freight)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
+                    @Html.ActionLink("Detail", "Detail", new { id = item.OrderId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+@section scripts{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+    </script>
+}

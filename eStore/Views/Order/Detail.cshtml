@@ -1,0 +1,151 @@
+@model BusinessObject.Order
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1  class="text-danger">Order Detail</h1>
+
+<table class="table col-6">
+    <tr>
+    <th>@Html.DisplayNameFor(model => model.MemberId)</th>
+    <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+    <th>@Html.DisplayNameFor(model => model.RequiredDate)</th>
+    <th>@Html.DisplayNameFor(model => model.ShippedDate)</th>
+    <th>@Html.DisplayNameFor(model => model.Freight)</th>
+    </tr>
+    <tr>
+    <td>@Html.DisplayFor(model => model.MemberId)</td>
+    <td>@Html.DisplayFor(model => model.OrderDate)</td>
+    <td>@Html.DisplayFor(model => model.RequiredDate)</td>
+    <td>@Html.DisplayFor(model => model.ShippedDate)</td>
+    <td>@Html.DisplayFor(model => model.Freight)</td>
+    </tr>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Unit Price
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Discount
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderDetails)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>            
+                <td>
+                    @Html.ActionLink("Edit", "Update", "OrderDetail" ,new { id = item.OrderId, product_id = item.ProductId}) |
+                    @Html.ActionLink("Delete", "DeleteDetail", "OrderDetail", new { id = item.OrderId, product_id = item.ProductId}, new {onclick="return confirmCheck()"})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<a class="btn btn-primary" asp-action="Index">Back to list</a>
+
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add order detail</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Form Order detail</h4>
+        </div>
+        <div class="modal-body">
+            <form asp-controller="OrderDetail" asp-action="Create" method = "POST">
+                <table>
+                    <tr>
+                        <td>
+                            <input name="OrderId" id="OrderId" value="@Html.DisplayFor(model => model.OrderId)" hidden/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="ProductId" style="font-weight:bold;">Product Name:</label>
+                        </td>
+                        <td>
+                            <select name="ProductId" id="ProductId">
+                                @foreach (var item in ViewBag.productList)
+                                    if (item.ProductId == -1)
+                                    {
+                                        <option disabled>@item.ProductName</option>
+                                    }
+                                    else {
+                                        <option value="@item.ProductId">@item.ProductName</option>
+                                    }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="UnitPrice" style="font-weight:bold;">UnitPrice:</label>
+                        </td>
+                        <td>
+                            <input name="UnitPrice" id="UnitPrice" min="1" type="number" required placeholder="Enter unit of price"/> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Quantity" style="font-weight:bold;" >Quantity:</label>
+                        </td>
+                        <td>
+                            <input name="Quantity" id="Quantity" min="1" type="number" required placeholder="Enter number of product to buy"/> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Discount" style="font-weight:bold;">Discount:</label>
+                        </td>
+                        <td>
+                            <input name="Discount" id="Discount" type="number" min="0" placeholder="Enter discount"/>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="Create" class="btn btn-success" />
+            </form> 
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  @section scripts{
+    <script>
+        function confirmCheck() {
+            return confirm("Are you sure to delete?");
+        }
+    </script>
+}

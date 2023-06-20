@@ -1,0 +1,32 @@
+@model BusinessObject.Member
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-danger">Personal information</h1>
+<table class="table table-hover">
+    <tr>
+        <td> @Html.DisplayNameFor(model => model.MemberId)</td>
+        <td> @Html.DisplayFor(model => model.MemberId)</td>
+    </tr>
+    <tr>
+        <td> @Html.DisplayNameFor(model => model.Email)</td>
+        <td> @Html.DisplayFor(model => model.Email)</td>
+    </tr>
+    <tr>
+        <td> @Html.DisplayNameFor(model => model.CompanyName)</td>
+        <td> @Html.DisplayFor(model => model.CompanyName)</td>
+    </tr>
+    <tr>
+         <td> @Html.DisplayNameFor(model => model.City)</td>
+        <td> @Html.DisplayFor(model => model.City)</td>
+    </tr>
+    <tr>
+        <td> @Html.DisplayNameFor(model => model.Country)</td>
+        <td> @Html.DisplayFor(model => model.Country)</td>
+    </tr>
+</table>
+<div>
+    <a class="btn btn-warning" asp-action="Edit">Edit Personal Info</a>
+    <a class="btn btn-success" asp-action="ChangePassword">Change Password</a>
+</div>

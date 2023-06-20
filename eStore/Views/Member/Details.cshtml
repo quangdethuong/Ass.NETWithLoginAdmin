@@ -1,0 +1,35 @@
+@model BusinessObject.Member
+@{
+    ViewData["Title"] = "Details";
+}
+<h1 class="text-danger">Details</h1>
+    <h4>Member</h4>
+    <table class="table">
+        <tr>
+            <td> @Html.DisplayNameFor(model => model.MemberId)</td>
+            <td>  @Html.DisplayFor(model => model.MemberId)</td>
+        </tr>
+           <tr>
+            <td> @Html.DisplayNameFor(model => model.Email)</td>
+            <td>  @Html.DisplayFor(model => model.Email)</td>
+        </tr>
+           <tr>
+            <td> @Html.DisplayNameFor(model => model.CompanyName)</td>
+            <td>  @Html.DisplayFor(model => model.CompanyName)</td>
+        </tr>
+           <tr>
+            <td> @Html.DisplayNameFor(model => model.City)</td>
+            <td>  @Html.DisplayFor(model => model.City)</td>
+        </tr>
+           <tr>
+            <td> @Html.DisplayNameFor(model => model.Country)</td>
+            <td>  @Html.DisplayFor(model => model.Country)</td>
+        </tr>
+           <tr>
+            <td> @Html.DisplayNameFor(model => model.Password)</td>
+            <td>  @Html.DisplayFor(model => model.Password)</td>
+        </tr>
+    </table>
+<div>
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+</div>

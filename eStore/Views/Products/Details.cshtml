@@ -1,0 +1,37 @@
+@model BusinessObject.Product
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text text-danger">Details</h1>
+<hr>
+    <h4>Product</h4>
+    <table class="table">
+        <tr>
+            <td> @Html.DisplayNameFor(model => model.ProductId)</td>
+            <td> @Html.DisplayFor(model => model.ProductId)</td>
+        </tr>
+        <tr>
+            <td> @Html.DisplayNameFor(model => model.CategoryId)</td>
+            <td> @Html.DisplayFor(model => model.Category.CategoryName)</td>
+        </tr>
+         <tr>
+            <td> @Html.DisplayNameFor(model => model.ProductName)</td>
+            <td> @Html.DisplayFor(model => model.ProductName)</td>
+        </tr>
+         <tr>
+            <td> @Html.DisplayNameFor(model => model.Weight)</td>
+            <td> @Html.DisplayFor(model => model.Weight)</td>
+        </tr>
+         <tr>
+            <td> @Html.DisplayNameFor(model => model.UnitPrice)</td>
+            <td> @Html.DisplayFor(model => model.UnitPrice)</td>
+        </tr>
+        <tr>
+            <td> @Html.DisplayNameFor(model => model.UnitsInStock)</td>
+            <td> @Html.DisplayFor(model => model.UnitsInStock)</td>
+        </tr>
+    </table>
+<div>
+    <a class="btn btn-success" asp-action="Index">Back to List</a>
+</div>

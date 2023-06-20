@@ -1,0 +1,44 @@
+@model BusinessObject.Order
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 class="text text-danger">Delete</h1>
+
+<div>
+    <h4>Order</h4>
+
+
+    <table class="table">
+        <tr>
+            <td> @Html.DisplayNameFor(model => model.OrderId)</td>
+            <td> @Html.DisplayFor(model => model.OrderId)</td>
+        </tr>
+        <tr>
+            <td> @Html.DisplayNameFor(model => model.Member.Email)</td>
+            <td> @Html.DisplayFor(model => model.Member.Email)</td>
+        </tr>
+         <tr>
+            <td> @Html.DisplayNameFor(model => model.OrderDate)</td>
+            <td> @Html.DisplayFor(model => model.OrderDate)</td>
+        </tr>
+         <tr>
+            <td> @Html.DisplayNameFor(model => model.RequiredDate)</td>
+            <td> @Html.DisplayFor(model => model.RequiredDate)</td>
+        </tr>
+         <tr>
+            <td> @Html.DisplayNameFor(model => model.ShippedDate)</td>
+            <td> @Html.DisplayFor(model => model.ShippedDate)</td>
+        </tr>
+        <tr>
+            <td> @Html.DisplayNameFor(model => model.Freight)</td>
+            <td> @Html.DisplayFor(model => model.Freight)</td>
+        </tr>
+    </table>
+
+     <form asp-action="Delete" method="post"  onclick="return confirm('Are you sure you want to do that?');">
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+    </form>
+    <div style="padding-top: 10px;"><a class="btn btn-primary" asp-action="Index">Back to List</a></div>
+   

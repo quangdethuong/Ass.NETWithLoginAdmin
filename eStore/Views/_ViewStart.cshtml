@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{  
+    int? roleTmp = HttpContextAccessor.HttpContext.Session.GetInt32("Role");
+    int role = 0;
+    string? email = HttpContextAccessor.HttpContext.Session.GetString("Email");
+    if (email != null) ViewBag.email = email;
+    if (roleTmp == null) role = 2;
+    else role = roleTmp.Value;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (role == 0) Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; 
+    else if (role == 1) Layout = "~/Views/Shared/_LayoutMember.cshtml";
+    else Layout = "~/Views/Shared/_Layout.cshtml";
+}   

@@ -1,0 +1,68 @@
+@model IEnumerable<BusinessObject.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<h1 class="text text-danger">List of products</h1>
+<hr>
+<h4>Product</h4>
+<p>
+    <a class="btn btn-primary" asp-action="Create">Add a new product</a>
+</p>
+
+<table class="table table-hover" id="myTable" class="display" style="width:100%">
+    <thead class="table-success">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Update", "Update", new { id = item.ProductId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+@section scripts{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+    </script>
+}
